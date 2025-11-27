@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+<div class="custom-select">
+  <div class="selected">Select Option</div>
+  <div class="options">
+    <div class="option">Option 1</div>
+    <div class="option">Option 2</div>
+    <div class="option">Option 3</div>
+  </div>
+</div>
+
+<style>
+.custom-select {
+  position: relative;
+  width: 200px;
+  font-family: sans-serif;
+}
+
+.selected {
+  background: #222;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  background: #333;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.option {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #555;
+}
+</style>
+
+<script>
+const select = document.querySelector('.custom-select');
+const selected = select.querySelector('.selected');
+const options = select.querySelector('.options');
+
+selected.addEventListener('click', () => {
+  options.style.display = options.style.display === 'block' ? 'none' : 'block';
+});
+
+select.querySelectorAll('.option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    selected.innerText = opt.innerText;
+    options.style.display = 'none';
+  });
+});
+</script>
+
+
+</body>
+</html>
+

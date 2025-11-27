@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temprature-convertor</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .outer-box{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(159, 2, 232, 0.959);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .innerbox{
+            height: 300px;
+            width: 500px;
+            border-radius: 20px;
+            background-color: rgba(159, 2, 232, 0);
+            box-shadow: 0 0 15px white;
+            padding: 2vw;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .innerbox input{
+            height: 50px;
+            width: 70%;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            padding-left: 10px;
+            font-size: 18px;            
+        }
+        .innerbox div{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            font-size: 25px;
+        }
+        h1{
+            color: white;
+        }
+        @media (max-width: 520px) {
+            .innerbox div{
+                flex-direction: column;
+            }
+            .innerbox{
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-box">
+        <h1>Temprature convertor</h1>
+        <form>
+            <div class="innerbox">
+            <div class="temp"><label for="celcius">celcius</label><input type="Number" id="celcius" placeholder="Temp in C"></div>
+            <div class="temp"><label for="Farnheight">Fahrenheit</label><input type="Number" id="Farnheight" placeholder="Temp in F"></div>
+            <div class="temp"><label for="Kelvin">Kelvin</label><input type="Number" id="Kelvin" placeholder="Temp in K"></div>
+        </div>
+        </form>
+    </div>
+    <script>
+        let celcius = document.querySelector('#celcius')
+        let farnheight = document.querySelector('#Farnheight')
+        let Kelvin = document.querySelector('#Kelvin')
+        celcius.addEventListener('input',()=>{
+            Kelvin.value = Number(celcius.value) + 273.15
+            farnheight.value = Number(celcius.value)*(9/5) + 32
+        })
+        farnheight.addEventListener('input',()=>{
+            celcius.value = (Number(farnheight.value)-32)*(5/9)
+            Kelvin.value =  (Number(farnheight.value)-32)*(5/9) + 273.15
+        })
+        Kelvin.addEventListener('input',()=>{
+            celcius.value = Number(Kelvin.value) - 273.15
+            farnheight.value = (Number(Kelvin.value)-273.15)*(9/5) + 32
+        })
+    </script>
+</body>
+</html>

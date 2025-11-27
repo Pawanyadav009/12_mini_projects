@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .outer-box{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(243, 247, 3, 0.959);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .innerbox{
+            /* height: 300px; */
+            width: 500px;
+            border-radius: 20px;
+            background-color: rgba(159, 2, 232, 0);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* box-shadow: 0 0 15px white; */
+        }
+        .box{
+            height: 4px;
+            width: 500px;
+            background-color: grey;
+            position: absolute;
+            z-index: 1;
+            
+        }
+        .boxinside{
+            height: 4px;
+            transition-duration: 2s;
+            background-color: green;
+            width: 0%;
+        }
+        .start{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255);
+            border: 4px solid grey;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: green;
+
+        }
+        .step{
+            display: flex;
+            width: 480px;
+            justify-content: space-between;
+            color: green;
+        }
+        button{
+            /* padding: 1vw; */
+            margin-top: 50px;
+            height: 35px;
+            width: 50px;
+            border-radius: 5px;
+            border: none;
+            background-color: blueviolet;
+            color: white;
+            box-shadow: 2px 2px 4px grey;
+        }
+        .controls{
+            display: flex;
+            gap: 30px;
+        }
+        .display{
+                visibility : hidden;
+        }
+        #start{
+            animation-delay: 2s;
+            border-color: green;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-box">
+        <div class="innerbox">
+            <div class="box">
+                <div class="boxinside"></div>
+            </div>
+            <div id="start" class="start">✓</div>
+            <div id="step1" class="start">✕</div>
+            <div id="step2" class="start">✕</div>
+            <div id="step3" class="start">✕</div>
+            <div id="step4" class="start">✕</div>
+        </div>
+        <div  class="step"><div>start</div>
+        <div  class="display" id="step1text">step1</div>
+        <div  class="display" id="step2text">step2</div>
+        <div  class="display" id="step3text">step3</div>
+        <div  class="display" id="step4text">step4</div>
+        </div>
+        <div class="controls">
+            <button id="back" style="background-color: grey;">←</button>
+            <button id="next">→</button>
+        </div>
+
+    </div>
+
+    <script>
+        let back = document.querySelector('#back')
+        let next = document.querySelector('#next')
+        let bar = document.querySelector('.boxinside')
+        let step1 = document.querySelector('#step1')
+        let step2 = document.querySelector('#step2')
+        let step3 = document.querySelector('#step3')
+        let step4 = document.querySelector('#step4')
+
+        let step1text = document.querySelector('#step1text')
+        let step2text = document.querySelector('#step2text')
+        let step3text = document.querySelector('#step3text')
+        let step4text = document.querySelector('#step4text')
+
+
+
+        count = 1;
+        next.addEventListener('click',()=>{
+            if(count==1){
+                return bar.style.width = '30%', step1.style.borderColor = 'green', count =2,
+                step1.textContent =`✓`,
+                step1text.classList.remove('display'),
+                back.style.backgroundColor = 'blueviolet'
+            }
+            if(count ==2){
+            return  bar.style.width = '52%',
+                step2.style.borderColor = 'green',
+                step2.textContent =`✓`,
+                step2text.classList.remove('display'),
+                count =3
+            }
+                if(count ==3){
+                return bar.style.width = '75%',
+                step3.style.borderColor = 'green',
+                step3.textContent =`✓`,
+                count=4,
+                step3text.classList.remove('display')
+                }
+                if(count ==4){
+                return bar.style.width = '100%',
+                step4.style.borderColor = 'green',
+                step4.textContent =`✓`,
+                step4text.classList.remove('display'),
+                next.style.backgroundColor = 'grey',
+                count=5}
+        })
+        back.addEventListener('click',()=>{
+            if(count==2){
+                return bar.style.width = '0%', step1.style.borderColor = 'grey', count =1,
+                step1.textContent =`✕`,
+                step1text.classList.add('display'),
+                back.style.backgroundColor = 'grey'
+                
+            }
+            if(count ==3){
+            return  bar.style.width = '30%',
+                step2.style.borderColor = 'grey',
+                step2.textContent =`✕`,
+                step2text.classList.add('display'),
+                count =2
+            }
+                if(count ==4){
+                return bar.style.width = '52%',
+                step3.style.borderColor = 'grey',
+                step3.textContent =`✕`,
+                count=3,
+                step3text.classList.add('display')
+                }
+                if(count ==5){
+                return bar.style.width = '75%',
+                step4.style.borderColor = 'grey',
+                step4.textContent =`✕`,
+                step4text.classList.add('display'),
+                next.style.backgroundColor = 'blueviolet',
+                count=4}
+        })
+    </script>
+</body>
+</html>

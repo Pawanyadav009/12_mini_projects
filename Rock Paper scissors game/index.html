@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .outer-box{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(255, 255, 255, 0.959);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .innerbox{
+            height: 100px;
+            width: 100px;
+            border-radius: 20px;
+            background-color: rgb(35, 34, 35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            /* box-shadow: 0 0 15px white; */
+            border: none;
+            cursor: pointer;
+        }
+        .box{
+            display: flex;
+            gap: 20px;
+        }
+        #rock{
+            background-color: red;
+        }
+        #paper{
+            background-color: green;
+        }
+        #scissors{
+            background-color: blueviolet;
+        }
+        p{
+            font-size: 30px;
+        }
+        #score{
+            color: red;
+        }
+        #score2{
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-box">
+        <h1>Rock Paper scissors game</h1>
+        <h3>choose your move</h3>
+        <div class="box">
+            <button class="innerbox" onclick="rockfec()" id="rock">
+            👊
+        </button>
+        <button class="innerbox" id="paper" onclick=" paperfec()">
+            ✋
+        </button>
+        <button class="innerbox" id="scissors" onclick="scissorsfec()">
+            ✌️
+        </button> 
+        </div>
+        <h2 id="result"></h2>
+        <p>Your score : <span id="score"></span> computer score : <span id="score2"></span></p>
+    </div>
+
+
+    <script>
+        
+        let score = document.querySelector('#score')
+        let score2 = document.querySelector('#score2')
+
+        let result = document.querySelector('#result')
+
+        score.textContent = Number(0)
+        score2.textContent = Number(0)
+
+        function rockfec(){
+            let computer = Math.trunc(Math.random()*3+1)
+        console.log(computer)
+            if(computer==1){
+                result.textContent = 'its a tie'
+            }
+            if(computer==2){
+                result.textContent = 'paper stop rock'
+                Number(score2.textContent++)
+
+            }
+            else{
+                result.textContent = 'rock bets scissors'
+                Number(score.textContent++)
+            }
+        }
+
+        function paperfec(){
+            let computer = Math.trunc(Math.random()*3+1)
+        console.log(computer)
+            if(computer==1){
+                result.textContent = 'paper stop rock'
+                Number(score.textContent++)
+            }
+            if(computer==2){
+                result.textContent = 'its a tie'
+            }
+            else{
+                result.textContent = 'scissors cuts paper'
+                
+                Number(score2.textContent++)
+            }
+        }
+
+        function scissorsfec(){
+            let computer = Math.trunc(Math.random()*3+1)
+        console.log(computer)
+            if(computer==1){
+                result.textContent = 'rock bets scissors'
+                Number(score2.textContent++)
+            }
+            if(computer==2){
+                result.textContent = 'scissors cuts paper'
+                Number(score.textContent++)
+            }
+            else{
+                result.textContent = 'its a tie'
+            }
+        }
+    </script>
+</body>
+</html>

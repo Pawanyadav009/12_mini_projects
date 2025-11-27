@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .outer-box{
+            height: 100vh;
+            width: 100vw;
+            /* background-color: rgba(24, 104, 70, 0.959); */
+            background: linear-gradient(rgb(43, 156, 21), rgb(35, 109, 122));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .innerbox{
+            height: 300px;
+            width: 500px;
+            border-radius: 20px;
+            background-color: rgba(159, 2, 232, 0);
+            box-shadow: 0 0 15px white;
+            padding: 2vw;
+            display: flex;
+            flex-direction: column;
+            font-size: 30px;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+        }
+        .innerbox input{
+                height: 50px;
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-box">
+        <div class="innerbox">
+                <label for="date">Enter your DOB</label><input type="date" id="date">
+                <button id="btn">get date</button>
+            <h3>Your age is :   <span id="result"></span> </h3>
+        </div>
+    </div>
+    <script>
+
+
+let DOB = document.querySelector("#date");
+let btn = document.querySelector("#btn");
+let result = document.querySelector("#result");
+
+btn.addEventListener("click", () => {
+    const datestring = DOB.value;
+    const dateobj = new Date(datestring);
+
+    const dayold = dateobj.getDate();
+    const monthold = dateobj.getMonth();  
+    const yearold = dateobj.getFullYear();
+
+    const currentdate = new Date();
+    const year = currentdate.getFullYear();
+    const month = currentdate.getMonth();  
+    const day = currentdate.getDate();
+
+    if (year < yearold) {
+        result.textContent = "Incorrect date";
+        return;
+    }
+
+    let age = year - yearold;
+
+    if (month < monthold || (month === monthold && day < dayold)) {
+        age--;
+    }
+
+    result.textContent = age;
+});
+
+
+
+
+    </script>
+</body>
+</html>

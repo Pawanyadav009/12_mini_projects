@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:  Verdana;
+        }
+        h1{
+            color: white;
+            font-size: 50px;
+        }
+        .outer-box{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(232, 190, 2, 0.959);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .innerbox{
+            height: 300px;
+            width: 500px;
+            border-radius: 20px;
+            background-color: rgba(159, 2, 232, 0);
+            box-shadow: 0 0 15px white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+        .timer, .controlers{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 40px;
+            color: white;
+            gap: 15px;
+        }
+        .Minutes, .seconds{
+            height: 100px;
+            width: 100px;
+            border-radius: 20px;
+            background-color: rgba(159, 2, 232, 0);
+            box-shadow: 0 0 15px white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn{
+            height: 40px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form{
+                margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-box">
+        <h1>Timer</h1>
+        <div class="innerbox">
+        <div class="timer">
+            <div class="Minutes">25</div>
+            :
+            <div class="seconds">00</div>
+        </div>
+        <div class="controlers">
+            <button class="btn" id="start">start</button>
+            <button class="btn" id="pause">pause</button>
+            <form><button class="btn" id="reset">reset</button></form>
+        </div>
+        </div>
+    </div>
+    <script>
+        let Minutes= document.querySelector('.Minutes')
+        let seconds= document.querySelector('.seconds')
+        let start= document.querySelector('#start')
+        let pause = document.querySelector('#pause')
+        let reset = document.querySelector('#reset')
+        let count= 1
+        startbtn = true;
+        start.addEventListener('click',()=>{
+            if(startbtn){
+                count = 1;
+            Minutes.textContent = Number(25)
+            setInterval(()=>{
+                
+                if(count==1){
+                    if(seconds.textContent==0 || seconds.textContent=='00'){
+                    Number(seconds.textContent = 59)
+                    Number(Minutes.textContent--)
+                }
+                    else{
+                    Number(seconds.textContent--)
+                    }
+                }
+            },1000)
+            startbtn = false;
+            }
+        }
+        )
+        pause.addEventListener('click',()=>{
+            if(count==1){
+                count =2
+                pause.textContent ='resume'
+            }
+            else{
+                count = 1;
+                pause.textContent= 'pause'
+            }
+        })
+    </script>
+</body>
+</html>

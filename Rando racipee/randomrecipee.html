@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="outerbox">
+    <button class="btn">click to get recipee</button>
+    <div class="innerbox visiblity">
+        <h2 id="recipeename">recipee name : <span id="Name"></span></h2>
+    <div class="imgdiv">
+        <img id="image" src="#" alt="#" width="100%">
+    </div>
+    <h3>ingridiants</h3>
+    <div class="ingrediants" id="ingrediants">
+        <ul id="ul">
+            
+        </ul>
+    </div>
+    <h3>steps</h3>
+    <div class="recipee">
+        <p id="recipee"></p>
+        </div>
+    <div class="youtubelink">
+        <a id="linkvideo" target="_blank" href="#">Click here for video</a>
+    </div>
+</div>
+</div>
+    
+    
+    <script>
+    
+        let image = document.querySelector('#image')
+        let ingrediants = document.querySelector('#ingrediants')
+        let steps = document.querySelector('#recipee')
+        let youtube = document.querySelector('#linkvideo')
+        let recipeename = document.querySelector('#Name')
+        let parent = document.querySelector('#ul')
+        let innerbox = document.querySelector('.innerbox')
+
+        let button = document.querySelector(".btn")
+        button.addEventListener('click',()=>{
+            (async function apicall(){
+                api = "https://www.themealdb.com/api/json/v1/1/random.php"
+                let data = await fetch(api)
+                let response = await data.json();
+                console.log(response)
+            
+            recipeename.textContent = response.meals[0].strMeal
+            image.src = response.meals[0].strMealThumb
+            // steps.innerHTML = `${response.meals[0].strInstructions}`
+            let inst = response.meals[0].strInstructions;
+            let formetted = inst.replace(/\.\s/g,'<br>')
+            steps.innerHTML = formetted
+                youtube.href = response.meals[0].strYoutube
+            
+                let meal = response.meals[0]
+                let ingridents1 = [];
+                for(let i=1; i<=20; i++){
+                    let ingrident = meal[`strIngredient${i}`]
+                    if(ingrident && ingrident.trim() !== ""){
+                        ingridents1.push(ingrident)
+                    }
+                }
+                let quntity = [];
+                for(let i=1; i<=20; i++){
+                    let unit = meal[`strMeasure${i}`]
+                    if(unit && unit.trim() !== ""){
+                        quntity.push(unit)
+                    }
+                }
+                for(let i=0; i<ingridents1.length; i++){
+                    let newel = document.createElement('li')
+                    newel.innerText = `${ingridents1[i]} : ${quntity[i]}`
+                    parent.appendChild(newel);
+                }
+                innerbox.classList.remove('visiblity')
+            })()
+        })
+    </script>
+</body>
+</html>

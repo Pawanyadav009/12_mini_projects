@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Brush Script MT", cursive;
+        }
+        .outer-box{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(137, 107, 9, 0.534);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .innerbox{
+            height: 300px;
+            width: 500px;
+            border-radius: 20px;
+            background-color: rgba(159, 2, 232, 0);
+            box-shadow: 0 0 15px white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2vw;
+            gap: 20px;
+        }
+        input{
+            height: 50px;
+            width: 100%;
+            outline: none;
+            border: none;
+            font-size: 25px;
+            border-radius: 10px;
+            padding:0 10px 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-box">
+        <div class="innerbox">
+            <h1>Weight convertor</h1>
+            <input id="kgs" type="number" placeholder="enter weight in kgs">
+            <input id="pound" type="number" placeholder="enter weight in pounds">
+        </div>
+    </div>
+    <script>
+        // let kgs = document.addEventListener('#kgs')
+        // let pound = document.addEventListener('#pound')
+
+        // kgs.addEventListener('input',()=>{
+        //     pound.value = Number(kgs.value*2.2046)
+        // })
+
+        let kilogm = document.querySelector('#kgs')
+        let pound = document.querySelector('#pound')
+
+        kilogm.addEventListener('input',()=>{
+            pound.value = Number(kgs.value*2.2046)
+        })
+        pound.addEventListener('input',()=>{
+            kilogm.value = Number(pound.value/2.2046)
+        })
+
+
+
+    </script>
+</body>
+</html>
